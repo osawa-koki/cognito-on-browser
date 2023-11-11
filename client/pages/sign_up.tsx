@@ -11,7 +11,7 @@ export default function SignUpPage (): React.JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const signUp = async () => {
+  const signUp = async (): Promise<void> => {
     setIsLoading(true)
 
     const attributeList = makeCognitoUserAttributes({ name, email })
@@ -49,17 +49,18 @@ export default function SignUpPage (): React.JSX.Element {
       <div id='SignUp'>
         <Form.Group controlId='formBasicName' className='mt-3'>
           <Form.Label>Your name</Form.Label>
-          <Form.Control type='text' placeholder='Enter name' value={name} onInput={(event) => setName(event.currentTarget.value)} />
+          <Form.Control type='text' placeholder='Enter name' value={name} onInput={(event) => { setName(event.currentTarget.value) }} />
         </Form.Group>
         <Form.Group controlId='formBasicEmail' className='mt-3'>
           <Form.Label>Email address</Form.Label>
-          <Form.Control type='email' placeholder='Enter email' value={email} onInput={(event) => setEmail(event.currentTarget.value)} />
+          <Form.Control type='email' placeholder='Enter email' value={email} onInput={(event) => { setEmail(event.currentTarget.value) }} />
         </Form.Group>
         <Form.Group controlId='formBasicPassword' className='mt-3'>
           <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' value={password} onInput={(event) => setPassword(event.currentTarget.value)} />
+          <Form.Control type='password' placeholder='Password' value={password} onInput={(event) => { setPassword(event.currentTarget.value) }} />
         </Form.Group>
         <hr />
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button variant='primary' className='mt-3' onClick={signUp} disabled={isLoading}>
           Sign Up
         </Button>

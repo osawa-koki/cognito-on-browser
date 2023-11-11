@@ -11,7 +11,7 @@ if (cognitoUserPoolId == null) throw new Error('NEXT_PUBLIC_USER_POOL_ID is not 
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool({
   ClientId: cognitoClientId,
-  UserPoolId: cognitoUserPoolId,
+  UserPoolId: cognitoUserPoolId
 })
 
 export { userPool, cognitoIdentityServiceProvider }
