@@ -15,6 +15,44 @@ Globals:
     TracingEnabled: true
 
 Resources:
+  # ユーザプール(認証部分)の定義
+  # Ref: https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
+  MyCognitoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: !Sub ${AWS::StackName}-user-pool
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+          RequireUppercase: true
+          TemporaryPasswordValidityDays: 7
+      Schema:
+        - AttributeDataType: String
+          Name: email
+          Required: true
+        - AttributeDataType: String
+          Name: name
+          Required: true
+        - AttributeDataType: String
+          Name: comment
+          Mutable: true
+      UsernameAttributes:
+        - email
+      AutoVerifiedAttributes:
+        - email
+
+  # ユーザプールクライアントの定義
+  # Ref: https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
+  MyCognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub ${AWS::StackName}-client-app
+      UserPoolId: !Ref MyCognitoUserPool
+      GenerateSecret: false
+
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -47,6 +85,18 @@ Resources:
       AutoConfigurationEnabled: 'true'
 
 Outputs:
+  # ユーザプールのIDを出力
+  UserPoolId:
+    Value: !Ref MyCognitoUserPool
+    Export:
+      Name: !Sub ${AWS::StackName}-user-pool-id
+
+  # ユーザプールクライアントのIDを出力
+  UserPoolClientId:
+    Value: !Ref MyCognitoUserPoolClient
+    Export:
+      Name: !Sub ${AWS::StackName}-user-pool-client-id
+
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
