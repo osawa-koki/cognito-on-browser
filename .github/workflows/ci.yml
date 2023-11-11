@@ -3,7 +3,9 @@ name: ci
 on: [push]
 
 env:
+  project-name: ${{ secrets.PROJECT_NAME }}
   client-directory: ./client/
+  server-directory: ./server/
 
 jobs:
   www-ci:
@@ -17,6 +19,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - uses: aws-actions/setup-sam@v2
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,6 +35,8 @@ jobs:
         with:
           path: ${{ env.client-directory }}node_modules/
           key: node-modules-${{ matrix.node-version }}-${{ hashFiles('./**/yarn.lock') }}
+      - name: Append data to `.env.local`
+        run: chmod +x ./initializer.sh && ./initializer.sh ${{ env.project-name }}
       - name: Install dependencies
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --non-interactive
