@@ -64,14 +64,14 @@ jobs:
       - name: Install dependencies
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --non-interactive --production
+      - name: Append data to `.env.local`
+        run: chmod +x ./initializer.sh && ./initializer.sh ${{ env.project-name }}
       - name: Build with Next.js
         run: yarn build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: ${{ env.client-directory }}dist/
-
-  # Deployment job
   www-deploy:
     environment:
       name: github-pages
