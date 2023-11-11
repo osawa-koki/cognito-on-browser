@@ -7,8 +7,8 @@ if [ -z "$project_name" ]; then
 fi
 
 # 配列に値をセット
-export UserPoolId=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text --no-cli-pager)
-export UserPoolClientId=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text --no-cli-pager)
+UserPoolId=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text --no-cli-pager)
+UserPoolClientId=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text --no-cli-pager)
 
 # .envファイルを作成
 echo "" >> .env.local
