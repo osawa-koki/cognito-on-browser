@@ -6,13 +6,8 @@ const pages = [
   },
   {
     emoji: '📖',
-    path: '/about/',
-    name: 'About'
-  },
-  {
-    emoji: '💓',
-    path: '/contact/',
-    name: 'Contact'
+    path: '/sign_up/',
+    name: 'SignUp'
   }
 ]
 
