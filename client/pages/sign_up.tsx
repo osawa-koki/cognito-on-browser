@@ -39,7 +39,7 @@ export default function SignUpPage (): React.JSX.Element {
 
   return (
     <>
-      <div id='SignUpbout'>
+      <div id='SignUp'>
         <Form.Group controlId='formBasicName' className='mt-3'>
           <Form.Label>Your name</Form.Label>
           <Form.Control type='text' placeholder='Enter name' value={name} onInput={(event) => setName(event.currentTarget.value)} />
