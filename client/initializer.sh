@@ -6,7 +6,7 @@ if [ -z "$project_name" ]; then
   exit 1
 fi
 
-# 配列に値をセット
+# 変数をセット
 UserPoolId=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text --no-cli-pager)
 UserPoolClientId=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text --no-cli-pager)
 
