@@ -26,6 +26,9 @@ concurrency:
 jobs:
   sam-deploy:
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ${{ env.server-directory }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
