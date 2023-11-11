@@ -1,17 +1,6 @@
 name: ci
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-      - develop
-      - issues/*
-  pull_request:
-    branches:
-      - main
-      - develop
-      - issues/*
+on: [push]
 
 env:
   client-directory: ./client/
