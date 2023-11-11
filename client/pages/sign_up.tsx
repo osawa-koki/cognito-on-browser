@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import makeCognitoUserAttributes from '../src/common/makeCognitoUserAttributes'
 import { userPool } from '../src/common/cognito'
+import { toast } from 'react-toastify'
 
 export default function SignUpPage (): React.JSX.Element {
+  const [isLoading, setIsLoading] = useState(false)
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const signUp = async () => {
-    const attributeList = makeCognitoUserAttributes({
-      name,
-      email
-    })
+    setIsLoading(true)
+
+    const attributeList = makeCognitoUserAttributes({ name, email })
 
     userPool.signUp(
       email,
@@ -20,18 +22,23 @@ export default function SignUpPage (): React.JSX.Element {
       attributeList,
       attributeList,
       (err, result) => {
-        // 登録がエラーとなった場合の処理
-        if (err != null) {
-          console.error(err)
-          return
-        }
+        try {
+          // 登録がエラーとなった場合の処理
+          if (err != null) {
+            console.error(err.message)
+            toast.error('User registration failed.')
+            return
+          }
 
-        // 登録が成功した場合の処理
-        if (result != null) {
-          const cognitoUser = result.user
-          console.log('user name is ' + cognitoUser.getUsername())
-        } else {
-          console.error('result is null')
+          // 登録が成功した場合の処理
+          if (result != null) {
+            const cognitoUser = result.user
+            toast.success(`User ${cognitoUser.getUsername()} has signed up!`)
+          } else {
+            toast.error('User registration failed.')
+          }
+        } finally {
+          setIsLoading(false)
         }
       }
     )
@@ -53,7 +60,7 @@ export default function SignUpPage (): React.JSX.Element {
           <Form.Control type='password' placeholder='Password' value={password} onInput={(event) => setPassword(event.currentTarget.value)} />
         </Form.Group>
         <hr />
-        <Button variant='primary' className='mt-3' onClick={signUp}>
+        <Button variant='primary' className='mt-3' onClick={signUp} disabled={isLoading}>
           Sign Up
         </Button>
       </div>
