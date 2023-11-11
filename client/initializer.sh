@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 project_name=$1
 if [ -z "$project_name" ]; then
@@ -7,7 +7,7 @@ if [ -z "$project_name" ]; then
 fi
 
 # 配列を定義
-declare -A array
+declare array
 
 # 配列に値をセット
 array["UserPoolId"]=$(aws cloudformation describe-stacks --stack-name $project_name --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text --no-cli-pager)
