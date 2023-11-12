@@ -49,7 +49,7 @@ export default function ResendCodePage (): React.JSX.Element {
         <hr />
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button variant='primary' className='mt-3' onClick={resendCode} disabled={isLoading}>
-          Verify
+          Resend Code
         </Button>
       </div>
     </>

@@ -48,7 +48,7 @@ export default function ForgotPasswordPage (): React.JSX.Element {
         </Form.Group>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button variant='primary' className='mt-3' onClick={forgotPassword} disabled={isLoading}>
-          Verify
+          Forgot Password
         </Button>
       </div>
     </>

@@ -49,7 +49,7 @@ export default function VerifyCodePage (): React.JSX.Element {
         </Form.Group>
         <Form.Group controlId='formBasicCode' className='mt-3'>
           <Form.Label>Code</Form.Label>
-          <Form.Control type='text' placeholder='Code' value={code} onInput={(event) => { setCode(event.currentTarget.value) }} />
+          <Form.Control type='text' placeholder='Enter code' value={code} onInput={(event) => { setCode(event.currentTarget.value) }} />
         </Form.Group>
         <hr />
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
