@@ -3,13 +3,12 @@
 from os import environ
 from typing import Union
 
-from fastapi import FastAPI, Header, status
-from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from mangum import Mangum
-
-from initializer import initializer
 from cognito_client import cognito_client
+from fastapi import FastAPI, Header, status
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from initializer import initializer
+from mangum import Mangum
 
 initializer()
 app = FastAPI()
