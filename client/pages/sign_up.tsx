@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import makeCognitoUserAttributes from '../src/common/makeCognitoUserAttributes'
-import { userPool } from '../src/common/cognito'
 import { toast } from 'react-toastify'
+import { userPool } from '../src/common/cognito'
+import makeCognitoUserAttributes from '../src/common/makeCognitoUserAttributes'
 
 export default function SignUpPage (): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
