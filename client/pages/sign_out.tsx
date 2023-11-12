@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { CognitoUserContext } from './_app'
 import { cognitoIdentityServiceProvider } from '../src/common/cognito'
