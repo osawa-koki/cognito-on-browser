@@ -44,8 +44,7 @@ def read_envs():
 
 @app.get("/api/verify_jwt")
 def verify_jwt(authorization: Union[str, None] = Header(default=None)):
-    """JWTを検証する。
-    """
+    """JWTを検証する。"""
     splitted_authorization = authorization.split(" ")
     if (authorization is None) or (len(splitted_authorization) != 2):
         content = {"message": "Invalid header."}
