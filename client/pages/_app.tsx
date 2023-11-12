@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { type AppProps } from 'next/app'
 import Head from 'next/head'
-import { type CognitoUserSession } from 'amazon-cognito-identity-js'
 import { ToastContainer } from 'react-toastify'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,24 +13,24 @@ import setting from '../setting'
 import Layout from '../components/Layout'
 
 export const CognitoUserContext = createContext<{
-  cognitoUserSession: CognitoUserSession | null
-  setCognitoUserSession: React.Dispatch<React.SetStateAction<CognitoUserSession | null>>
+  accessToken: string | null
+  setAccessToken: React.Dispatch<React.SetStateAction<string | null>>
 }>({
-  cognitoUserSession: null,
-  setCognitoUserSession: () => {}
+  accessToken: null,
+  setAccessToken: () => {}
 })
 
 export default function MyApp ({ Component, pageProps }: AppProps): React.JSX.Element {
-  const [cognitoUserSession, _setCognitoUserSession] = useState<CognitoUserSession | null>(null)
-  const setCognitoUserSession = (cognitoUserSession: CognitoUserSession | null): void => {
-    localStorage.setItem('CognitoUserSession', JSON.stringify(cognitoUserSession))
-    _setCognitoUserSession(cognitoUserSession)
+  const [accessToken, _setAccessToken] = useState<string | null>(null)
+  const setAccessToken = (accessToken: string): void => {
+    localStorage.setItem('AccessToken', JSON.stringify(accessToken))
+    _setAccessToken(accessToken)
   }
 
   useEffect(() => {
-    const cognitoUserSession = localStorage.getItem('CognitoUserSession')
-    if (cognitoUserSession != null) {
-      setCognitoUserSession(JSON.parse(cognitoUserSession))
+    const accessToken = localStorage.getItem('AccessToken')
+    if (accessToken != null) {
+      setAccessToken(JSON.parse(accessToken))
     }
   }, [])
 
@@ -48,8 +47,8 @@ export default function MyApp ({ Component, pageProps }: AppProps): React.JSX.El
         />
       </Head>
         <CognitoUserContext.Provider value={{
-          cognitoUserSession,
-          setCognitoUserSession
+          accessToken,
+          setAccessToken
         }}>
           <Layout>
             <Component {...pageProps} />

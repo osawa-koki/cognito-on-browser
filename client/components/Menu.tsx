@@ -14,13 +14,13 @@ function Menu (props: Props): React.JSX.Element {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
-  const { cognitoUserSession } = useContext(CognitoUserContext)
+  const { accessToken } = useContext(CognitoUserContext)
 
   return (
     <>
       <div id='Menu' className={menuOpen ? 'on' : ''}>
         {pages.map((page, index: number) => {
-          if (cognitoUserSession != null && !page.showCondition(cognitoUserSession)) return (<></>)
+          if (!page.showCondition({ accessToken })) return (<></>)
           return (
             <Link
               key={index}
