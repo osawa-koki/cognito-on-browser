@@ -44,6 +44,12 @@ def read_envs():
 @app.get("/api/verify_jwt")
 def verify_jwt(authorization: Union[str, None] = Header(default=None)):
     """JWTを検証する。"""
+    if authorization is None:
+        content = {"message": "Invalid header."}
+        return JSONResponse(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            content=content,
+        )
     splitted_authorization = authorization.split(" ")
     if (authorization is None) or (len(splitted_authorization) != 2):
         content = {"message": "Invalid header."}
