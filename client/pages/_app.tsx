@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { type AppProps } from 'next/app'
 import Head from 'next/head'
-import { CognitoUserSession } from 'amazon-cognito-identity-js'
+import { type CognitoUserSession } from 'amazon-cognito-identity-js'
 import { ToastContainer } from 'react-toastify'
 
 import 'bootstrap/dist/css/bootstrap.min.css'

@@ -20,7 +20,7 @@ function Menu (props: Props): React.JSX.Element {
     <>
       <div id='Menu' className={menuOpen ? 'on' : ''}>
         {pages.map((page, index: number) => {
-          if (cognitoUserSession != null && page.showCondition(cognitoUserSession) === false) return (<></>)
+          if (cognitoUserSession != null && !page.showCondition(cognitoUserSession)) return (<></>)
           return (
             <Link
               key={index}

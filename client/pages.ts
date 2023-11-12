@@ -1,4 +1,4 @@
-import { CognitoUserSession } from "amazon-cognito-identity-js"
+import { type CognitoUserSession } from 'amazon-cognito-identity-js'
 
 interface Page {
   emoji: string
