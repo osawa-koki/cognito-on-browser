@@ -45,13 +45,17 @@ export default function VerifyTokenPage (): React.JSX.Element {
   return (
     <>
       <div id='VerifyToken'>
+        <Form.Group controlId='formBasicToken' className='mt-3'>
+          <Form.Label>Access Token</Form.Label>
+          <Form.Control as='textarea' rows={16} value={accessToken ?? '<NULL>'} disabled />
+        </Form.Group>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button variant='primary' className='mt-3' onClick={verifyToken} disabled={isLoading}>
           Verify Token
         </Button>
         <hr />
         <Form.Group controlId='formBasicTextarea' className='mt-3'>
-          <Form.Label>Access Token</Form.Label>
+          <Form.Label>User Info</Form.Label>
           <Form.Control as='textarea' rows={10} value={userInfo} readOnly />
         </Form.Group>
       </div>

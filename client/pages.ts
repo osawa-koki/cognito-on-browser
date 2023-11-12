@@ -69,13 +69,13 @@ const pages: Page[] = [
     showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
-    emoji: '📖',
+    emoji: '🛋️',
     path: '/update_attributes/',
     name: 'Update Attrs',
     showCondition: (userInfo) => userInfo.accessToken != null
   },
   {
-    emoji: '📖',
+    emoji: '🪔',
     path: '/withdrawal/',
     name: 'Withdrawal',
     showCondition: (userInfo) => userInfo.accessToken != null
