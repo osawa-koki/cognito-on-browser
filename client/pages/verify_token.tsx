@@ -47,7 +47,7 @@ export default function VerifyTokenPage (): React.JSX.Element {
       <div id='VerifyToken'>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button variant='primary' className='mt-3' onClick={verifyToken} disabled={isLoading}>
-          Verify
+          Verify Token
         </Button>
         <hr />
         <Form.Group controlId='formBasicTextarea' className='mt-3'>
