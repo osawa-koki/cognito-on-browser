@@ -47,15 +47,15 @@ export default function MyApp ({ Component, pageProps }: AppProps): React.JSX.El
           href={`${setting.basePath}/favicon.ico`}
         />
       </Head>
-      <Layout>
         <CognitoUserContext.Provider value={{
           cognitoUserSession,
           setCognitoUserSession
         }}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <ToastContainer />
         </CognitoUserContext.Provider>
-        <ToastContainer />
-      </Layout>
     </>
   )
 }
