@@ -24,18 +24,18 @@ export default function SignOutPage (): React.JSX.Element {
         // サインアウトがエラーとなった場合の処理
         if (err != null) {
           console.error(err.message)
-          toast.error('Failed to sign out.')
+          toast.error('Already signed out.')
           return
         }
 
         // サインアウトが成功した場合の処理
         if (result != null) {
-          setAccessToken(null)
           toast.success('Succeeded to sign out.')
         } else {
           toast.error('Failed to sign out.')
         }
       } finally {
+        setAccessToken(null)
         setIsLoading(false)
       }
     })
