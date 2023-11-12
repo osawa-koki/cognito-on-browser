@@ -55,6 +55,12 @@ const pages: Page[] = [
     path: '/change_password/',
     name: 'Change PW',
     showCondition: (userInfo) => userInfo.accessToken != null
+  },
+  {
+    emoji: '⛰️',
+    path: '/forgot_password/',
+    name: 'Forgot PW',
+    showCondition: (userInfo) => userInfo.accessToken == null
   }
 ]
 
