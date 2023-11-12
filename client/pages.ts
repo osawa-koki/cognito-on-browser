@@ -49,6 +49,12 @@ const pages: Page[] = [
     path: '/sign_out/',
     name: 'Sign Out',
     showCondition: (userInfo) => userInfo.accessToken != null
+  },
+  {
+    emoji: '📝',
+    path: '/change_password/',
+    name: 'Change PW',
+    showCondition: (userInfo) => userInfo.accessToken != null
   }
 ]
 
