@@ -73,6 +73,12 @@ const pages: Page[] = [
     path: '/update_attributes/',
     name: 'Update Attrs',
     showCondition: (userInfo) => userInfo.accessToken != null
+  },
+  {
+    emoji: '📖',
+    path: '/withdrawal/',
+    name: 'Withdrawal',
+    showCondition: (userInfo) => userInfo.accessToken != null
   }
 ]
 
