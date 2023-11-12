@@ -17,31 +17,37 @@ const pages: Page[] = [
   {
     emoji: '📖',
     path: '/sign_up/',
-    name: 'SignUp',
+    name: 'Sign Up',
     showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '🖊️',
     path: '/verify_code/',
-    name: 'VerifyCode',
+    name: 'Verify Code',
     showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '💡',
     path: '/resend_code/',
-    name: 'ResendCode',
+    name: 'Resend Code',
     showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '🔑',
     path: '/sign_in/',
-    name: 'SignIn',
+    name: 'Sign In',
     showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '🔒',
     path: '/verify_token/',
-    name: 'VerifyToken',
+    name: 'Verify Token',
+    showCondition: (userInfo) => userInfo.accessToken != null
+  },
+  {
+    emoji: '📗',
+    path: '/sign_out/',
+    name: 'Sign Out',
     showCondition: (userInfo) => userInfo.accessToken != null
   }
 ]

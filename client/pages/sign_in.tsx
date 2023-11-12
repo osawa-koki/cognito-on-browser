@@ -57,7 +57,7 @@ export default function SignInPage (): React.JSX.Element {
         <hr />
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button variant='primary' className='mt-3' onClick={signIn} disabled={isLoading}>
-          Verify
+          Sign In
         </Button>
       </div>
     </>
