@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Link from 'next/link'
-import pages from '../pages'
 import { Button } from 'react-bootstrap'
 import { BsGearFill } from 'react-icons/bs'
+import pages from '../pages'
+import { CognitoUserContext } from '../pages/_app'
 
 interface Props {
   currentPage: string | null
@@ -13,10 +14,13 @@ function Menu (props: Props): React.JSX.Element {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
+  const { cognitoUserSession } = useContext(CognitoUserContext)
+
   return (
     <>
       <div id='Menu' className={menuOpen ? 'on' : ''}>
         {pages.map((page, index: number) => {
+          if (cognitoUserSession != null && !page.showCondition(cognitoUserSession)) return (<></>)
           return (
             <Link
               key={index}

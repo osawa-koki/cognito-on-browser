@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { userPool } from '../src/common/cognito'
 
-export default function VerifyCOdePage (): React.JSX.Element {
+export default function ResendCodePage (): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
 
   const [email, setEmail] = useState('')
@@ -41,7 +41,7 @@ export default function VerifyCOdePage (): React.JSX.Element {
 
   return (
     <>
-      <div id='SignUp'>
+      <div id='ResendCode'>
         <Form.Group controlId='formBasicEmail' className='mt-3'>
           <Form.Label>Email address</Form.Label>
           <Form.Control type='email' placeholder='Enter email' value={email} onInput={(event) => { setEmail(event.currentTarget.value) }} />
