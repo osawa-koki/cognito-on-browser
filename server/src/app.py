@@ -7,10 +7,8 @@ from cognito_client import cognito_client
 from fastapi import FastAPI, Header, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from initializer import initializer
 from mangum import Mangum
 
-initializer()
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -18,7 +16,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-COGNITO_CLIENT_ID = environ["USER_POOL_CLIENT_ID"]
 
 
 @app.get("/api/ping")
