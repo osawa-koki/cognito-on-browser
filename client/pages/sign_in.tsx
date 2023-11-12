@@ -28,7 +28,7 @@ export default function SignInPage (): React.JSX.Element {
       onSuccess: (result) => {
         console.log(JSON.stringify(result, null, 2))
         localStorage.setItem('CognitoUserSession', JSON.stringify(result))
-        toast.success(`User ${result.getIdToken().payload.email} has signed in!`)
+        toast.success(`User ${result.getIdToken().payload.email as string} has signed in!`)
         setIsLoading(false)
       },
       onFailure: (err) => {
