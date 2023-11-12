@@ -13,7 +13,7 @@ export default function SignInPage (): React.JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const verifyCode = async (): Promise<void> => {
+  const signIn = async (): Promise<void> => {
     setIsLoading(true)
 
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
@@ -55,7 +55,7 @@ export default function SignInPage (): React.JSX.Element {
         </Form.Group>
         <hr />
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-        <Button variant='primary' className='mt-3' onClick={verifyCode} disabled={isLoading}>
+        <Button variant='primary' className='mt-3' onClick={signIn} disabled={isLoading}>
           Verify
         </Button>
       </div>

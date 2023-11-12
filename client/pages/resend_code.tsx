@@ -9,7 +9,7 @@ export default function ResendCodePage (): React.JSX.Element {
 
   const [email, setEmail] = useState('')
 
-  const verifyCode = async (): Promise<void> => {
+  const resendCode = async (): Promise<void> => {
     setIsLoading(true)
 
     const userData = {
@@ -48,7 +48,7 @@ export default function ResendCodePage (): React.JSX.Element {
         </Form.Group>
         <hr />
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-        <Button variant='primary' className='mt-3' onClick={verifyCode} disabled={isLoading}>
+        <Button variant='primary' className='mt-3' onClick={resendCode} disabled={isLoading}>
           Verify
         </Button>
       </div>
