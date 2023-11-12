@@ -1,3 +1,4 @@
 {
-  "eslint.workingDirectories": ["./client/"]
+  "eslint.workingDirectories": ["./client/"],
+  "mypy-type-checker.args": ["--ignore-missing-imports"],
 }
