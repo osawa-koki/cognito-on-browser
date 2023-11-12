@@ -19,6 +19,9 @@ yarn dev
 
 # ビルド
 yarn build
+
+# Lint
+yarn lint
 ```
 
 ## 開発環境の構築方法 (Server)
