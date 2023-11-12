@@ -67,6 +67,12 @@ const pages: Page[] = [
     path: '/confirm_password/',
     name: 'Confirm PW',
     showCondition: (userInfo) => userInfo.accessToken == null
+  },
+  {
+    emoji: '📖',
+    path: '/update_attributes/',
+    name: 'Update Attrs',
+    showCondition: (userInfo) => userInfo.accessToken != null
   }
 ]
 
