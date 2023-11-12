@@ -3,6 +3,6 @@
 import boto3
 
 cognito_client = boto3.client(
-    'cognito-idp',
-    region_name='ap-northeast-1',
+    "cognito-idp",
+    region_name="ap-northeast-1",
 )

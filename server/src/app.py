@@ -3,15 +3,12 @@
 from os import environ
 from typing import Union
 
+from cognito_client import cognito_client
 from fastapi import FastAPI, Header, status
-from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from mangum import Mangum
 
-from initializer import initializer
-from cognito_client import cognito_client
-
-initializer()
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -19,7 +16,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-COGNITO_CLIENT_ID = environ["USER_POOL_CLIENT_ID"]
 
 
 @app.get("/api/ping")
@@ -44,8 +40,13 @@ def read_envs():
 
 @app.get("/api/verify_jwt")
 def verify_jwt(authorization: Union[str, None] = Header(default=None)):
-    """JWTを検証する。
-    """
+    """JWTを検証する。"""
+    if authorization is None:
+        content = {"message": "Invalid header."}
+        return JSONResponse(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            content=content,
+        )
     splitted_authorization = authorization.split(" ")
     if (authorization is None) or (len(splitted_authorization) != 2):
         content = {"message": "Invalid header."}
