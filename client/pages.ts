@@ -18,6 +18,11 @@ const pages = [
     emoji: '💡',
     path: '/resend_code/',
     name: 'ResendCode'
+  },
+  {
+    emoji: '🔑',
+    path: '/sign_in/',
+    name: 'SignIn'
   }
 ]
 
