@@ -4,7 +4,9 @@ interface Page {
   emoji: string
   path: string
   name: string
-  showCondition: (cognitoUserSession: CognitoUserSession) => boolean
+  showCondition: (userInfo: {
+    accessToken: string | null
+  }) => boolean
 }
 
 const pages: Page[] = [
@@ -18,25 +20,31 @@ const pages: Page[] = [
     emoji: '📖',
     path: '/sign_up/',
     name: 'SignUp',
-    showCondition: (cognitoUserSession) => cognitoUserSession == null
+    showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '🖊️',
     path: '/verify_code/',
     name: 'VerifyCode',
-    showCondition: (cognitoUserSession) => cognitoUserSession == null
+    showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '💡',
     path: '/resend_code/',
     name: 'ResendCode',
-    showCondition: (cognitoUserSession) => cognitoUserSession == null
+    showCondition: (userInfo) => userInfo.accessToken == null
   },
   {
     emoji: '🔑',
     path: '/sign_in/',
     name: 'SignIn',
-    showCondition: (cognitoUserSession) => cognitoUserSession == null
+    showCondition: (userInfo) => userInfo.accessToken == null
+  },
+  {
+    emoji: '🔒',
+    path: '/verify_token/',
+    name: 'VerifyToken',
+    showCondition: (userInfo) => userInfo.accessToken != null
   }
 ]
 

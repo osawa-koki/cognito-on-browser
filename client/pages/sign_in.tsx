@@ -8,7 +8,7 @@ import { userPool } from '../src/common/cognito'
 export default function SignInPage (): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
 
-  const { setCognitoUserSession } = useContext(CognitoUserContext)
+  const { setAccessToken } = useContext(CognitoUserContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,7 +30,8 @@ export default function SignInPage (): React.JSX.Element {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
         console.log(JSON.stringify(result, null, 2))
-        setCognitoUserSession(result)
+        const accessToken = result.getAccessToken().getJwtToken()
+        setAccessToken(accessToken)
         toast.success(`User ${result.getIdToken().payload.email as string} has signed in!`)
         setIsLoading(false)
       },
