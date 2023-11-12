@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { userPool } from '../src/common/cognito'
 
-export default function VerifyCOdePage (): React.JSX.Element {
+export default function ResendCodePage (): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
 
   const [email, setEmail] = useState('')
