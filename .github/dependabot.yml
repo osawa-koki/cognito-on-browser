@@ -10,3 +10,18 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 10
+  - package-ecosystem: "pip"
+    directory: "/server/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+  - package-ecosystem: "pip"
+    directory: "/server/src/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+  - package-ecosystem: "pip"
+    directory: "/server/tests/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
