@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { type AppProps } from 'next/app'
 import Head from 'next/head'
+import { CognitoUserSession } from 'amazon-cognito-identity-js'
 import { ToastContainer } from 'react-toastify'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -12,7 +13,28 @@ import '../styles/menu.scss'
 import setting from '../setting'
 import Layout from '../components/Layout'
 
+export const CognitoUserContext = createContext<{
+  cognitoUserSession: CognitoUserSession | null
+  setCognitoUserSession: React.Dispatch<React.SetStateAction<CognitoUserSession | null>>
+}>({
+  cognitoUserSession: null,
+  setCognitoUserSession: () => {}
+})
+
 export default function MyApp ({ Component, pageProps }: AppProps): React.JSX.Element {
+  const [cognitoUserSession, _setCognitoUserSession] = useState<CognitoUserSession | null>(null)
+  const setCognitoUserSession = (cognitoUserSession: CognitoUserSession | null): void => {
+    localStorage.setItem('CognitoUserSession', JSON.stringify(cognitoUserSession))
+    _setCognitoUserSession(cognitoUserSession)
+  }
+
+  useEffect(() => {
+    const cognitoUserSession = localStorage.getItem('CognitoUserSession')
+    if (cognitoUserSession != null) {
+      setCognitoUserSession(JSON.parse(cognitoUserSession))
+    }
+  }, [])
+
   return (
     <>
       <Head>
@@ -26,7 +48,12 @@ export default function MyApp ({ Component, pageProps }: AppProps): React.JSX.El
         />
       </Head>
       <Layout>
-        <Component {...pageProps} />
+        <CognitoUserContext.Provider value={{
+          cognitoUserSession,
+          setCognitoUserSession
+        }}>
+          <Component {...pageProps} />
+        </CognitoUserContext.Provider>
         <ToastContainer />
       </Layout>
     </>

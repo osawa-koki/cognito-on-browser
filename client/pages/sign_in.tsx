@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js'
 import { Button, Form } from 'react-bootstrap'
 import { toast } from 'react-toastify'
+import { CognitoUserContext } from './_app'
 import { userPool } from '../src/common/cognito'
 
 export default function SignInPage (): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
+
+  const { setCognitoUserSession } = useContext(CognitoUserContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,7 +30,7 @@ export default function SignInPage (): React.JSX.Element {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
         console.log(JSON.stringify(result, null, 2))
-        localStorage.setItem('CognitoUserSession', JSON.stringify(result))
+        setCognitoUserSession(result)
         toast.success(`User ${result.getIdToken().payload.email as string} has signed in!`)
         setIsLoading(false)
       },
